@@ -7,12 +7,19 @@ const app = express()
 const port = 3003 // Different from React's 3000
 
 // More detailed CORS configuration
-app.use(cors({
-  origin: 'http://localhost:3001',
-  methods: ['POST', 'GET', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'sec-ch-ua', 'sec-ch-ua-mobile', 'sec-ch-ua-platform'],
-  credentials: true
-}))
+app.use(
+  cors({
+    origin: 'http://localhost:3001',
+    methods: ['POST', 'GET', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: [
+      'Content-Type',
+      'sec-ch-ua',
+      'sec-ch-ua-mobile',
+      'sec-ch-ua-platform',
+    ],
+    credentials: true,
+  })
+)
 
 // Add OPTIONS handling for preflight requests
 app.options('*', cors())
@@ -27,14 +34,14 @@ app.use((err, req, res, next) => {
 
 // Endpoint to save config
 app.post('/save-config', (req, res) => {
-  console.log('Received request');
-  console.log('Headers:', req.headers);
-  console.log('Body:', req.body);
-  
-  const { configPath, configData } = req.body;
-  console.log('Config Path:', configPath);
-  console.log('Config Data:', configData);
-  
+  console.log('Received request')
+  console.log('Headers:', req.headers)
+  console.log('Body:', req.body)
+
+  const { configPath, configData } = req.body
+  console.log('Config Path:', configPath)
+  console.log('Config Data:', configData)
+
   // Resolve the path (handles ~ for home directory)
   const fullPath = configPath.replace(/^~/, process.env.HOME)
 

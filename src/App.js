@@ -106,19 +106,6 @@ function App() {
               />
             </div>
           </div>
-
-          <div className="form-group">
-            <label>
-              Disk Usage Threshold (%):
-              <input
-                type="number"
-                min="0"
-                max="100"
-                value={config.disk_usage_threshold}
-                onChange={(e) => setConfig({ ...config, disk_usage_threshold: parseInt(e.target.value) })}
-              />
-            </label>
-          </div>
         </section>
 
         <div className="form-actions">
